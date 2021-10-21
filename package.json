@@ -1,0 +1,23 @@
+{
+  "name": "game-scanner-qr-generator",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sofiaschn/game-scanner-qr-generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sofiaschn/game-scanner-qr-generator/issues"
+  },
+  "homepage": "https://github.com/sofiaschn/game-scanner-qr-generator#readme",
+  "dependencies": {
+    "qrcode": "^1.4.4",
+    "uglify-js": "^3.14.2"
+  }
+}
