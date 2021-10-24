@@ -2,6 +2,7 @@ const UglifyJS = require("uglify-js");
 const fs = require("fs/promises");
 const readline = require("readline");
 const QRCode = require("qrcode");
+const { gzip } = require("node-gzip");
 
 const input = readline.createInterface({
     input: process.stdin,
@@ -16,15 +17,21 @@ input.question("Insert game name: ", (name) => {
         }).code;
         const object = { name, code };
 
-        const output = JSON.stringify(object, 0);
+        const stringified = JSON.stringify(object, 0);
 
-        QRCode.toFile("./qrcode.png", output, (error) => {
-            if (error) {
-                console.log("Error:", error);
-            } else {
-                console.log("Saved QRCode to file qrcode.png.");
+        const output = await gzip(stringified);
+
+        QRCode.toFile(
+            "./qrcode.png",
+            [{ data: output, mode: "byte" }],
+            (error) => {
+                if (error) {
+                    console.log("Error:", error);
+                } else {
+                    console.log("Saved QRCode to file qrcode.png.");
+                }
+                input.close();
             }
-            input.close();
-        });
+        );
     });
 });
